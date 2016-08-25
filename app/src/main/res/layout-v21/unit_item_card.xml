@@ -1,0 +1,92 @@
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:elevation="2dp">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:elevation="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:text="Unit"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingEnd="8dp"
+            android:text=""
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_toRightOf="@id/title_text"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grammar:"
+            android:id="@+id/grammar_text"
+            android:padding="8dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_below="@+id/title_text"/>
+
+        <TextView
+            android:id="@+id/grammar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text=""
+            android:textColor="#414141"
+            android:textSize="16sp"
+            android:layout_toRightOf="@+id/vocabulary_text"
+            android:layout_below="@+id/title_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vocabulary:"
+            android:id="@+id/vocabulary_text"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:layout_below="@+id/grammar"/>
+
+        <TextView
+            android:id="@+id/vocabulary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text=""
+            android:textColor="#414141"
+            android:textSize="16sp"
+            android:layout_below="@+id/grammar"
+            android:layout_toRightOf="@+id/vocabulary_text"
+            />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

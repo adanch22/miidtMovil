@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "11198188691",
+    "project_id": "protean-garage-121618"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11198188691:android:9962fca5c25121e0",
+        "android_client_info": {
+          "package_name": "ciex.edu.mx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT0S8we6UDw7xfEYUk2u9ljrBWMmlo3G4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
