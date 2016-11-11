@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:elevation="15dp"
+        android:elevation="35dp"
         android:orientation="horizontal">
 
         <ImageView

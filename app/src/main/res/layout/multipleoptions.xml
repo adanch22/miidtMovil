@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="100dp"
+        android:background="@color/iron"
+        android:elevation="5dp"
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/infomultipleoptions"
+            android:layout_below="@id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="Information"
+            android:textSize="20sp"/>
+
+
+        <TextView
+            android:layout_below="@id/infomultipleoptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:text="question"
+            android:textSize="20sp"
+            android:id="@+id/mtv1"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/mtv1">
+
+            <RadioButton
+                android:id="@+id/ranswer1"
+                android:checked="true"
+                android:text=""
+                android:onClick="onRadioButtonClicked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/ranswer2"
+                android:text=""
+                android:onClick="onRadioButtonClicked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/ranswer3"
+                android:text=""
+                android:onClick="onRadioButtonClicked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/nomultipleoptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No. ejercicio"
+        android:textSize="28sp"
+        android:textColor="@color/colorPrimary"
+        android:elevation="2dp"
+        android:layout_marginTop="19dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/vnoresource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No. ejercicio"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <RelativeLayout
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@color/iron"
+        android:layout_marginTop="90dp"
+        android:elevation="5dp"
+        android:id="@+id/contentr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/videoexercise"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/ic_youtube"
+            android:onClick="clickVideoview"
+            android:scaleType="fitCenter"
+            />
+
+        <TextView
+            android:id="@+id/vtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageexercise"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:text="titulo" />
+
+        <TextView
+            android:text="Click en imagen para reproducir el video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:textSize="18sp"
+            android:layout_alignBottom="@+id/videoexercise"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -371,8 +371,10 @@ public class BookActivity extends AppCompatActivity implements ConnectivityRecei
                             book.setImageName(temp.getString("image"));
                             book.setLevel(level);
                             book.setIndex((i+1)+"");
-                            book.setUrlPortada(EndPoints.BOOKS_URL.replace("level?","level"+level)
-                                    .replace("book?","book"+(i+1))+temp.getString("image"));
+                            book.setUrlPortada(EndPoints.BOOKS_URL.replace("level?","level"+level).replace("book?",temp.getString("title").replace(" ",""))
+                                    + temp.getString("image"));
+                           /* book.setUrlPortada(EndPoints.BOOKS_URL.replace("level?","level"+level)
+                                    .replace("book?",temp.getString("title"))+temp.getString("image"));*/
                             booksArrayList.add(book);
                         }
 

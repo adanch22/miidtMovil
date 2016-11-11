@@ -15,7 +15,7 @@ import ciex.edu.mx.R;
 import ciex.edu.mx.model.Unit;
 
 /**
- * Created by azulyoro on 12/08/16.
+ * Created on 12/08/16.
  */
 public class unitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -23,13 +23,13 @@ public class unitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Context mContext;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title, grammar, vocabulary;
+        TextView title, description, author;
 
         public ViewHolder(View view) {
             super(view);
             title = (TextView) itemView.findViewById(R.id.title);
-            grammar = (TextView) itemView.findViewById(R.id.grammar);
-            vocabulary = (TextView) itemView.findViewById(R.id.vocabulary);
+            description = (TextView) itemView.findViewById(R.id.description);
+            author = (TextView) itemView.findViewById(R.id.author);
         }
     }
 
@@ -49,9 +49,9 @@ public class unitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         Unit unit = unitsArrayList.get(position);
-        ((ViewHolder) holder).title.setText(unit.getTitle());
-        ((ViewHolder) holder).grammar.setText(unit.getGrammar());
-        ((ViewHolder) holder).vocabulary.setText(unit.getVocabulary());
+        ((ViewHolder) holder).title.setText(unit.getName());
+        ((ViewHolder) holder).description.setText(unit.getDescription());
+        ((ViewHolder) holder).author.setText(unit.getAuthor());
     }
 
     @Override

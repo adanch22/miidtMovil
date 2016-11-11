@@ -6,23 +6,24 @@ package ciex.edu.mx.model;
 import java.io.Serializable;
 
 public class Unit implements Serializable {
-    String grammar, title, vocabulary;
+    String description, title, author, name;
 
     public Unit() {
     }
 
-    public Unit(String title, String grammar, String vocabulary) {
+    public Unit(String title, String description, String author, String name) {
         this.title = title;
-        this.grammar = grammar;
-        this.vocabulary = vocabulary;
+        this.name = name;
+        this.description = description;
+        this.author = author;
     }
 
-    public String getGrammar() {
-        return grammar;
+    /*public String getGrammar() {
+        return description;
     }
 
-    public void setGrammar(String grammar) {
-        this.grammar = grammar;
+    public void setGrammar(String description) {
+        this.description = description;
     }
 
     public String getTitle() {
@@ -34,10 +35,42 @@ public class Unit implements Serializable {
     }
 
     public String getVocabulary() {
-        return vocabulary;
+        return author;
     }
 
-    public void setVocabulary(String vocabulary) {
-        this.vocabulary = vocabulary;
+    public void setVocabulary(String author) {
+        this.author = author;
+    }*/
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

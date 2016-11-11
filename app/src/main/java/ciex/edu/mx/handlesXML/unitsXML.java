@@ -60,12 +60,16 @@ public class unitsXML {
                         break;
 
                     case XmlPullParser.END_TAG:
-                        if(name.equals("grammar")){
-                            unit.setGrammar(text);
+                        if(name.equals("title")){
+                            unit.setName(text);
                         }
-                        else if(name.equals("vocabulary")){
-                            unit.setVocabulary(text);
-                        }else if(name.equals("unit")){
+                        else if(name.equals("description")){
+                            unit.setDescription(text);
+
+                        }else if(name.equals("author")){
+                            unit.setAuthor(text);
+
+                        } else if(name.equals("unit")){
                             units.add(unit);
                         }
                         break;

@@ -13,12 +13,15 @@ import java.util.ArrayList;
 
 import ciex.edu.mx.model.Exercise;
 import ciex.edu.mx.model.Question;
+import ciex.edu.mx.model.Resource;
 
 /**
- * Created by azulyoro on 01/07/16.
+ * Created by adanchavezolivera on 09/11/16.
  */
-public class exerciseXML {
-    public ArrayList<Exercise> exercises;
+
+public class resourceXML {
+
+    public ArrayList<Resource> resources;
     private ArrayList<Question> questions;
     private volatile boolean readcorrect = true;
     private String urlString = null, unit = null;
@@ -33,23 +36,21 @@ public class exerciseXML {
         return readcorrect;
     }
 
-    public exerciseXML(String url, String unit){
+    public resourceXML(String url, String unit){
         this.urlString = url;
         this.unit = unit;
-        this.exercises = new ArrayList<>();
+        this.resources = new ArrayList<>();
         this.questions = new ArrayList<>();
     }
 
-
-
     public int getCountUnits(){
-        return this.exercises.size();
+        return this.resources.size();
     }
 
     public void parseXMLAndStoreIt(XmlPullParser myParser) {
         int event;
         String text=null;
-        Exercise exercise = new Exercise();
+        Resource exercise = new Resource();
         Question question = new Question();
         try {
             event = myParser.getEventType();
@@ -59,16 +60,16 @@ public class exerciseXML {
 
                 switch (event){
                     case XmlPullParser.START_TAG:
-                        if(name.equals("exercise")){
-                            exercise = new Exercise();
-                            questions = new ArrayList<>();
-                            exercise.setType(myParser.getAttributeValue(null,"value"));
-                            type = myParser.getAttributeValue(null,"value");
-                        }else if(name.equals("question")){
+                        if(name.equals("resource")){
+                            exercise = new Resource();
+                            //   questions = new ArrayList<>();
+                            //   exercise.setType(myParser.getAttributeValue(null,"value"));
+                            //   type = myParser.getAttributeValue(null,"value");
+                        }/*else if(name.equals("question")){
                             exercise.setAnswerok(myParser.getAttributeValue(null,"value"));
                             question.setAnswer(myParser.getAttributeValue(null,"value"));
 
-                        }
+                        }*/
                         break;
 
                     case XmlPullParser.TEXT:
@@ -76,41 +77,25 @@ public class exerciseXML {
                         break;
 
                     case XmlPullParser.END_TAG:
-                        if(name.equals("image")){
+                        if(name.equals("file")){
                             getBitmap(urlString+text);
                             while(!ImageDownloadComplete);
                             exercise.setImage(imagenAux);
                             imagenAux=null;
                             ImageDownloadComplete = false;
+                            exercise.setUrl(urlString+text);
                         }
-                        else if(name.equals("information")){
-                            exercise.setInformation(text);
-                        }else if(name.equals("question")){
+                        else if(name.equals("resourcetype")){
+                            exercise.setType(text);
 
-                            if (type.equals("multipleoptions")){
-                                exercise.setQuestion(text);
+                        }else if(name.equals("title")){
+                            exercise.setTitle(text);
 
-                            }else {
-                                question.setQuestion(text);
-                                questions.add(question);
-                                question = new Question();
-                            }
-
-                        }else if(name.equals("answer1")){
-                            exercise.setAnswer1(text);
-
-                        }else if(name.equals("answer2")){
-                            exercise.setAnswer2(text);
-
-                        }else if(name.equals("answer3")){
-                            exercise.setAnswer3(text);
                         }
+                        else if(name.equals("resource")){
 
-                        else if(name.equals("exercise")){
-
-                            exercise.setQuestions(questions);
-                            exercises.add(exercise);
-
+                            //exercise.setQuestions(questions);
+                            resources.add(exercise);
                         }
                         break;
                 }
@@ -175,7 +160,11 @@ public class exerciseXML {
         thread.start();
     }
 
-    public ArrayList<Exercise> getExercises() {
-        return exercises;
+
+    public ArrayList<Resource> getExercises() {
+        return resources;
     }
+
+
+
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ciex</string>
+    <string name="app_name">Objetos de Aprendizaje</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="matricula">Matricula</string>
@@ -7,20 +7,21 @@
     <string name="err_msg_name">Enter full name</string>
     <string name="err_msg_password">Enter a valid password</string>
     <string name="title_activity_chat_room_discussion">ChatRoomDiscussionActivity</string>
-    <string name="action_logout">Logout</string>
+    <string name="action_logout">Cerrar sesión</string>
     <string name="title_activity_room">Select a course</string>
     <string name="title_activity_chat_room">CcourseActivity</string>
     <string name="title_activity_borrar">borrar</string>
     <string name="title_activity_web">Ciex</string>
-    <string name="title_activity_unit">Select a unit</string>
+    <string name="title_activity_unit">Selecciona OA</string>
     <string name="label_enter_button">Enter</string>
     <string name="label_msg_login">Authenticating…</string>
     <string name="title_activity_lesson">Select a lesson</string>
-    <string name="title_activity_book">Select a book</string>
+    <string name="title_activity_book">Seleciona temática</string>
     <string name="logo">logo</string>
     <string name="gcm_defaultSenderId">11198188691</string>
     <string name="title_activity_full_screen_view">FullScreenViewActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="close">Close</string>
+    <string name="title_activity_resource">Recursos Multimedia</string>
 </resources>

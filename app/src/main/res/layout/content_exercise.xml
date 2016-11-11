@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/iron"
     tools:context=".activity.ExerciseActivity"
     tools:showIn="@layout/activity_exercise"
     android:orientation="horizontal">
@@ -15,7 +16,10 @@
         android:layout_height="wrap_content"
         android:layout_width="fill_parent" >
 
-        <include layout="@layout/presentation"/>
+        <include android:id="@+id/presentationView" layout="@layout/presentation"/>
+        <include android:id="@+id/questionaryView" layout="@layout/questionary"/>
+        <include android:id="@+id/multipleView" layout="@layout/multipleoptions"/>
+
         <include layout="@layout/results"/>
 
     </ViewFlipper>

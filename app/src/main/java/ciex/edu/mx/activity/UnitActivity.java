@@ -67,7 +67,7 @@ public class UnitActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position) {
                         // when chat is clicked, launch full chat thread activity
-                        Intent intent = new Intent(UnitActivity.this, ExerciseActivity.class);
+                        Intent intent = new Intent(UnitActivity.this, ResourceActivity.class);
                         intent.putExtra("title",title);
                         intent.putExtra("level",level);
                         intent.putExtra("book",book);
@@ -143,8 +143,11 @@ public class UnitActivity extends AppCompatActivity {
      * */
     private void fetchUnits() {
         unitsXML obj;
+       /* String url = EndPoints.UNITS_CONTENT_URL.replace("level?","level"+level)
+                .replace("book?","book"+book);*/
         String url = EndPoints.UNITS_CONTENT_URL.replace("level?","level"+level)
-                .replace("book?","book"+book);
+                .replace("book?",title.replace(" ",""));
+
         obj = new unitsXML(url);
         obj.fetchXML();
         while(obj.parsingComplete);
