@@ -10,17 +10,17 @@
         android:text="No. ejercicio"
         android:textColor="@color/colorPrimary"
         android:textSize="28sp"
-        android:layout_marginTop="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="35dp" />
 
 
     <RelativeLayout
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:background="@color/iron"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="70dp"
         android:elevation="5dp"
         android:id="@+id/contentq"
         android:layout_width="match_parent"

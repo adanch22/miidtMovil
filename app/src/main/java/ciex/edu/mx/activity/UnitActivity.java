@@ -19,6 +19,7 @@ import ciex.edu.mx.R;
 import ciex.edu.mx.adapter.unitAdapter;
 import ciex.edu.mx.app.EndPoints;
 import ciex.edu.mx.app.MyApplication;
+import ciex.edu.mx.dialog.ListDialog;
 import ciex.edu.mx.handlesXML.unitsXML;
 import ciex.edu.mx.model.Unit;
 
@@ -54,6 +55,8 @@ public class UnitActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+
+        //reciclerview
         recyclerView = (RecyclerView) findViewById(R.id.unit_recycler_view);
         unitsArrayList = new ArrayList<>();
         mAdapter = new unitAdapter(this, unitsArrayList);
@@ -66,13 +69,14 @@ public class UnitActivity extends AppCompatActivity {
                 (getApplicationContext(), recyclerView, new unitAdapter.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
-                        // when chat is clicked, launch full chat thread activity
-                        Intent intent = new Intent(UnitActivity.this, ResourceActivity.class);
+                       // when chat is clicked, launch full chat thread activity
+                       /* Intent intent = new Intent(UnitActivity.this, ExerciseActivity.class);
                         intent.putExtra("title",title);
                         intent.putExtra("level",level);
                         intent.putExtra("book",book);
                         intent.putExtra("unit",unitsArrayList.get(position).getTitle());
-                        startActivity(intent);
+                        startActivity(intent);*/
+                        new ListDialog(title,level, book , unitsArrayList.get(position).getTitle()).show(getSupportFragmentManager(), "ListDialog");
                     }
 
                     @Override

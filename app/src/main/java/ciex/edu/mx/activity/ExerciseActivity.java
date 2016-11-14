@@ -9,7 +9,11 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,6 +36,7 @@ import ciex.edu.mx.model.Question;
 public class ExerciseActivity extends AppCompatActivity {
     private static final String TAG = ExerciseActivity.class.getSimpleName();
     private String title, level, book, unit, exerciseType;
+    private Menu menu;
     private ArrayList<Exercise> exercises;
     private ImageView iv1;
     private TextView tv1,nov1, tv2, rb1,rb2,rb3;
@@ -61,6 +66,8 @@ public class ExerciseActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_exercise);
         vf = (ViewFlipper) findViewById(R.id.viewFlipper);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarexercise);
+        setSupportActionBar(toolbar);
         //image = (ImageView) findViewById(R.id.imagePresentation);
         //information = (TextView) findViewById(R.id.infoPresentation);
 
@@ -136,6 +143,33 @@ public class ExerciseActivity extends AppCompatActivity {
         super.onDestroy();
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_resource, menu);
+        this.menu = menu;
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.resource_m:
+                Intent intent = new Intent(ExerciseActivity.this, ResourceActivity.class);
+                intent.putExtra("title",title);
+                intent.putExtra("level",level);
+                intent.putExtra("book",book);
+                intent.putExtra("unit",unit);
+                startActivity(intent);
+                break;
+
+
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
+
 
     private void launchLoginActivity() {
         Intent intent = new Intent(ExerciseActivity.this, LoginActivity.class);

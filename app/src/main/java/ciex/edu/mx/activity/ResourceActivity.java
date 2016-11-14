@@ -246,28 +246,6 @@ public class ResourceActivity extends AppCompatActivity {
 
     }
 
-    public  void clickImageview(View view) {
-        vf.setDisplayedChild(4);
-
-        imageview = (ImageView) findViewById(R.id.ImageView);
-        pDialog = new ProgressDialog(ResourceActivity.this);
-
-        Bitmap bm = null;
-        try {
-            URL _url = new URL(exercises.get(exercisePosition).getUrl());
-            URLConnection con = _url.openConnection();
-            con.connect();
-            InputStream is = con.getInputStream();
-            BufferedInputStream bis = new BufferedInputStream(is);
-            bm = BitmapFactory.decodeStream(bis);
-            bis.close();
-            is.close();
-        } catch (IOException e) {
-
-        }
-
-        imageview.setImageBitmap(bm);
-    }
 
 
 

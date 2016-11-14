@@ -138,6 +138,7 @@
         <activity
             android:name=".activity.ResourceActivity"
             android:label="@string/title_activity_resource"
+            android:configChanges="screenSize|orientation"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
