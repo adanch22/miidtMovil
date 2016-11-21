@@ -10,9 +10,8 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
-import ciex.edu.mx.activity.ExerciseActivity;
-import ciex.edu.mx.activity.ResourceActivity;
-import ciex.edu.mx.activity.UnitActivity;
+import ciex.edu.mx.activity.ExercisesActivity;
+import ciex.edu.mx.activity.ResourcesActivity;
 
 
 /**
@@ -79,7 +78,7 @@ public class ListDialog extends DialogFragment {
                                 switch(item) {
                                     case 0:
                                         Toast.makeText(getActivity(), items[item] , Toast.LENGTH_SHORT).show();
-                                        intent = new Intent(getActivity(), ExerciseActivity.class);
+                                        intent = new Intent(getActivity(), ExercisesActivity.class);
                                         intent.putExtra("title",title);
                                         intent.putExtra("level",level);
                                         intent.putExtra("book",book);
@@ -89,7 +88,7 @@ public class ListDialog extends DialogFragment {
                                         break;
                                     case 1:
                                         Toast.makeText(getActivity(), items[item], Toast.LENGTH_SHORT).show();
-                                        intent = new Intent(getActivity(), ResourceActivity.class);
+                                        intent = new Intent(getActivity(), ResourcesActivity.class);
                                         intent.putExtra("title",title);
                                         intent.putExtra("level",level);
                                         intent.putExtra("book",book);

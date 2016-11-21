@@ -2,6 +2,7 @@ package ciex.edu.mx.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -15,6 +16,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.MediaController;
@@ -28,6 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -43,8 +48,8 @@ import ciex.edu.mx.model.Question;
 import ciex.edu.mx.model.Resource;
 
 
-public class ResourceActivity extends AppCompatActivity {
-    private static final String TAG = ExerciseActivity.class.getSimpleName();
+public class ResourcesActivity extends AppCompatActivity {
+    private static final String TAG = ResourcesActivity.class.getSimpleName();
     private String title, level, book, unit, exerciseType;
     private ArrayList<Resource> exercises;
     private ImageView iv1;
@@ -57,6 +62,7 @@ public class ResourceActivity extends AppCompatActivity {
     private VideoView videoview;
     private ProgressDialog pDialog;
 
+    private WebView web;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,14 +79,16 @@ public class ResourceActivity extends AppCompatActivity {
         level = getIntent().getStringExtra("level");
         book = getIntent().getStringExtra("book");
         unit = getIntent().getStringExtra("unit");
+        unit = cleanString(unit);
 
         finish=false;
         exercises=loadXml();
 
-        setContentView(R.layout.activity_resource);
+        setContentView(R.layout.activity_resources);
         vf = (ViewFlipper) findViewById(R.id.resourceviewFlipper);
-      /*  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
+        web = (WebView) findViewById(R.id.webview);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         showExercise();
 
@@ -92,7 +100,7 @@ public class ResourceActivity extends AppCompatActivity {
 
                 if (finish==true){
 
-                    Intent intent = new Intent(ResourceActivity.this, UnitActivity.class);
+                    Intent intent = new Intent(ResourcesActivity.this, UnitActivity.class);
                     intent.putExtra("title",title);
                     intent.putExtra("level",level);
                     intent.putExtra("book",book);
@@ -103,6 +111,9 @@ public class ResourceActivity extends AppCompatActivity {
                     Snackbar.make(view, "Siguiente recurso multimedia", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     exercisePosition++;
+                    if (exerciseType.equals("video"))
+                        videoview.stopPlayback();
+
                     showExercise();
                     /////////////
                 }
@@ -134,7 +145,7 @@ public class ResourceActivity extends AppCompatActivity {
     }
 
     private void launchLoginActivity() {
-        Intent intent = new Intent(ResourceActivity.this, LoginActivity.class);
+        Intent intent = new Intent(ResourcesActivity.this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
@@ -162,41 +173,110 @@ public class ResourceActivity extends AppCompatActivity {
                 case "image":
                     exerciseType = "image";
                     vf.setDisplayedChild(0);
-                    nov1 = (TextView) findViewById(R.id.noresource);
+                  /*  nov1 = (TextView) findViewById(R.id.noresource);
                     exercise = exercisePosition + 1;
                     nov1.setText(Integer.toString(exercise)+ " de " + exercises.size() );
 
-                    iv1 = (ImageView) findViewById(R.id.imageexercise);
+                    iv1 = (ImageView) findViewById(R.id.imageresource);
                     tv1 = (TextView) findViewById(R.id.title);
                     iv1.setImageBitmap(exercises.get(exercisePosition).getImage());
+                    tv1.setText(exercises.get(exercisePosition).getTitle());*/
+
+                    //abrir imagen en webview
+                    exercise = exercisePosition + 1;
+                    nov1 = (TextView) findViewById(R.id.noresource);
+                    nov1.setText(Integer.toString(exercise)+ " de " + exercises.size() );
+                    tv1 = (TextView) findViewById(R.id.title);
                     tv1.setText(exercises.get(exercisePosition).getTitle());
+                    WebSettings settings = web.getSettings();
+                    settings.setLoadWithOverviewMode(true);
+                    settings.setUseWideViewPort(true);
+                    settings.setJavaScriptEnabled(true);
+                    settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
+                    settings.setBuiltInZoomControls(true);
+                    web.loadUrl(exercises.get(exercisePosition).getUrl());
+                    web.setWebViewClient(new WebViewClient());
 
                     break;
 
                 case "video":
                     exerciseType = "video";
-                    vf.setDisplayedChild(1);
+                    /*vf.setDisplayedChild(1);
                     nov1 = (TextView) findViewById(R.id.vnoresource);
                     exercise = exercisePosition + 1;
                     nov1.setText(Integer.toString(exercise)+ " de " + exercises.size() );
 
-                   /* iv1 = (ImageView) findViewById(R.id.videoexercise);
-                    iv1.setImageBitmap(exercises.get(exercisePosition).getImage());*/
+                   *//* iv1 = (ImageView) findViewById(R.id.videoexercise);
+                    iv1.setImageBitmap(exercises.get(exercisePosition).getImage());*//*
+                    tv1 = (TextView) findViewById(R.id.vtitle);
+                    tv1.setText(exercises.get(exercisePosition).getTitle());*/
+
+                    vf.setDisplayedChild(1);
+                    nov1 = (TextView) findViewById(R.id.vnoresource);
+                    exercise = exercisePosition + 1;
+                    nov1.setText(Integer.toString(exercise)+ " de " + exercises.size() );
                     tv1 = (TextView) findViewById(R.id.vtitle);
                     tv1.setText(exercises.get(exercisePosition).getTitle());
 
+                    videoview = (VideoView) findViewById(R.id.VideoView);
+                    pDialog = new ProgressDialog(ResourcesActivity.this);
+
+                    pDialog.setTitle(exercises.get(exercisePosition).getTitle() + "Video Streaming");
+                    // Set progressbar message
+                    pDialog.setMessage("Buffering...");
+                    pDialog.setIndeterminate(false);
+                    pDialog.setCancelable(false);
+                    // Show progressbar
+                    pDialog.show();
+                    try {
+                        // Start the MediaController
+                        MediaController mediacontroller = new MediaController(
+                                ResourcesActivity.this);
+                        mediacontroller.setAnchorView(videoview);
+                        // Get the URL from String VideoURL
+                        Uri video = Uri.parse(exercises.get(exercisePosition).getUrl());
+                        videoview.setMediaController(mediacontroller);
+                        videoview.setVideoURI(video);
+
+                    } catch (Exception e) {
+                        Log.e("Error", e.getMessage());
+                        e.printStackTrace();
+                    }
+
+                    videoview.requestFocus();
+                    videoview.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        // Close the progress bar and play the video
+                        public void onPrepared(MediaPlayer mp) {
+                            pDialog.dismiss();
+                            //  videoview.start();
+                        }
+                    });
+
+
                     break;
+
+                case "pdf":
+                    exerciseType = "pdf";
+                    vf.setDisplayedChild(0);
+                 /*   //abrir imagen en webview
+                    exercise = exercisePosition + 1;
+                    nov1 = (TextView) findViewById(R.id.noresource);
+                    nov1.setText(Integer.toString(exercise)+ " de " + exercises.size() );
+                    WebView webx = (WebView) findViewById(R.id.webview);
+                    WebSettings setting = webx.getSettings();
+                    setting.setLoadWithOverviewMode(true);
+                    setting.setUseWideViewPort(true);
+                    setting.setDomStorageEnabled(true);
+                    setting.setJavaScriptEnabled(true);
+                    setting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+                    setting.setBuiltInZoomControls(true);
+                    webx.loadUrl("http://drive.google.com/viewerng/viewer?embedded=true&url=" + exercises.get(exercisePosition).getUrl());
+*/
+                    break;
+
 
             }
         }else{
-
-            //if (vf.getDisplayedChild() == 0)
-
-            // Next screen comes in from left.
-            //vf.setInAnimation(this, R.anim.slide_in_from_left);
-
-            // Current screen goes out from right.
-            //vf.setOutAnimation(this, R.anim.slide_out_to_right);
 
             finish = true;
             vf.setDisplayedChild(2);
@@ -211,7 +291,7 @@ public class ResourceActivity extends AppCompatActivity {
         vf.setDisplayedChild(3);
 
         videoview = (VideoView) findViewById(R.id.VideoView);
-        pDialog = new ProgressDialog(ResourceActivity.this);
+        pDialog = new ProgressDialog(ResourcesActivity.this);
 
         pDialog.setTitle("Video Streaming");
         // Set progressbar message
@@ -223,7 +303,7 @@ public class ResourceActivity extends AppCompatActivity {
         try {
             // Start the MediaController
             MediaController mediacontroller = new MediaController(
-                    ResourceActivity.this);
+                    ResourcesActivity.this);
             mediacontroller.setAnchorView(videoview);
             // Get the URL from String VideoURL
             Uri video = Uri.parse(exercises.get(exercisePosition).getUrl());
@@ -246,7 +326,15 @@ public class ResourceActivity extends AppCompatActivity {
 
     }
 
+    //funtion
+    public static String cleanString(String texto) {
+        texto = Normalizer.normalize(texto, Normalizer.Form.NFD);
+        texto = texto.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        return texto;
+    }
+
 
 
 
 }
+

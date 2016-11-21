@@ -24,7 +24,7 @@
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_oa"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -45,6 +45,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.UnitActivity"
+            android:configChanges="screenSize|orientation"
             android:label="@string/title_activity_unit"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
@@ -73,14 +74,6 @@
         <activity
             android:name=".activity.WebActivity"
             android:label="@string/title_activity_web"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.UnitActivity" />
-        </activity>
-        <activity
-            android:name=".activity.ExerciseActivity"
-            android:label="@string/title_activity_lesson"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -136,10 +129,13 @@
             android:label="@string/title_activity_full_screen_view"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name=".activity.ResourceActivity"
-            android:label="@string/title_activity_resource"
-            android:configChanges="screenSize|orientation"
+            android:name=".activity.ExercisesActivity"
+            android:label="@string/title_activity_exercises"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ResourcesActivity"
+            android:label="@string/title_activity_resources"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -34,6 +34,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -371,7 +372,12 @@ public class BookActivity extends AppCompatActivity implements ConnectivityRecei
                             book.setImageName(temp.getString("image"));
                             book.setLevel(level);
                             book.setIndex((i+1)+"");
-                            book.setUrlPortada(EndPoints.BOOKS_URL.replace("level?","level"+level).replace("book?",temp.getString("title").replace(" ",""))
+
+                            //eliminar acentos y espacios
+                            String aux = temp.getString("title").replace(" ","");
+                            aux = cleanString(aux);
+
+                            book.setUrlPortada(EndPoints.BOOKS_URL.replace("level?","level"+level).replace("book?", aux)
                                     + temp.getString("image"));
                            /* book.setUrlPortada(EndPoints.BOOKS_URL.replace("level?","level"+level)
                                     .replace("book?",temp.getString("title"))+temp.getString("image"));*/
@@ -406,6 +412,13 @@ public class BookActivity extends AppCompatActivity implements ConnectivityRecei
 
         //Adding request to request queue
         MyApplication.getInstance().addToRequestQueue(strReq);
+    }
+
+    //funtion
+    public static String cleanString(String texto) {
+        texto = Normalizer.normalize(texto, Normalizer.Form.NFD);
+        texto = texto.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        return texto;
     }
 }
 

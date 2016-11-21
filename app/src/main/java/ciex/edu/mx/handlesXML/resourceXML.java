@@ -78,11 +78,11 @@ public class resourceXML {
 
                     case XmlPullParser.END_TAG:
                         if(name.equals("file")){
-                            getBitmap(urlString+text);
+                           /* getBitmap(urlString+text);
                             while(!ImageDownloadComplete);
                             exercise.setImage(imagenAux);
                             imagenAux=null;
-                            ImageDownloadComplete = false;
+                            ImageDownloadComplete = false;*/
                             exercise.setUrl(urlString+text);
                         }
                         else if(name.equals("resourcetype")){

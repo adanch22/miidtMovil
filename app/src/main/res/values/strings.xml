@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Objetos de Aprendizaje</string>
+    <string name="app_name">MIIDT:OA</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="matricula">Matricula</string>
@@ -26,4 +26,6 @@
     <string name="title_activity_resource">Recursos Multimedia</string>
     <string name="title_activity_video">VideoActivity</string>
     <string name="menu_resource">Recursos multimedia</string>
+    <string name="title_activity_exercises">Ejercicios del OA</string>
+    <string name="title_activity_resources">Recursos multimedia del OA</string>
 </resources>

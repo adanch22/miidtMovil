@@ -41,7 +41,7 @@ public class unitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView;
-        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.unit_item_card, parent, false);
+        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.unit_items_card, parent, false);
         return new ViewHolder(itemView);
     }
 

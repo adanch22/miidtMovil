@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -33,8 +34,8 @@ import ciex.edu.mx.handlesXML.exerciseXML;
 import ciex.edu.mx.model.Exercise;
 import ciex.edu.mx.model.Question;
 
-public class ExerciseActivity extends AppCompatActivity {
-    private static final String TAG = ExerciseActivity.class.getSimpleName();
+public class ExercisesActivity extends AppCompatActivity {
+    private static final String TAG = ExercisesActivity.class.getSimpleName();
     private String title, level, book, unit, exerciseType;
     private Menu menu;
     private ArrayList<Exercise> exercises;
@@ -43,6 +44,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private int exercisePosition = 0, exercise, rbcheked=1;
     private ViewFlipper vf;
     private Boolean finish;
+    private int error;
     private RelativeLayout relativeLmp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,27 +62,29 @@ public class ExerciseActivity extends AppCompatActivity {
         level = getIntent().getStringExtra("level");
         book = getIntent().getStringExtra("book");
         unit = getIntent().getStringExtra("unit");
+        unit = cleanString(unit);
 
         exercises=loadXml();
         finish = false;
+        error=0;
 
-        setContentView(R.layout.activity_exercise);
+        setContentView(R.layout.activity_exercises);
         vf = (ViewFlipper) findViewById(R.id.viewFlipper);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarexercise);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //image = (ImageView) findViewById(R.id.imagePresentation);
         //information = (TextView) findViewById(R.id.infoPresentation);
 
         showExercise();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.evaluate);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (finish==true){
 
-                    Intent intent = new Intent(ExerciseActivity.this, UnitActivity.class);
+                    Intent intent = new Intent(ExercisesActivity.this, UnitActivity.class);
                     intent.putExtra("title",title);
                     intent.putExtra("level",level);
                     intent.putExtra("book",book);
@@ -103,10 +107,17 @@ public class ExerciseActivity extends AppCompatActivity {
                             break;
                     }
                     if(!correct){
-                        Snackbar.make(view, "Respuesta incorrecta, Intentalo de nuevo", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+                        error= error+1;
+                        if (error<3)
+                            Snackbar.make(view, "Respuesta incorrecta, Intentalo de nuevo",
+                                    Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                        else
+                            Snackbar.make(view, "La respuesta coorrecta es la opción: "+ exercises.get(exercisePosition).getAnswerok(),
+                                    Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
                     }else{
                         cleanText();
+                        error=0;
                         Snackbar.make(view, "Respuesta  correcta", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                         exercisePosition++;
@@ -157,7 +168,7 @@ public class ExerciseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.resource_m:
-                Intent intent = new Intent(ExerciseActivity.this, ResourceActivity.class);
+                Intent intent = new Intent(ExercisesActivity.this, ResourcesActivity.class);
                 intent.putExtra("title",title);
                 intent.putExtra("level",level);
                 intent.putExtra("book",book);
@@ -172,7 +183,7 @@ public class ExerciseActivity extends AppCompatActivity {
 
 
     private void launchLoginActivity() {
-        Intent intent = new Intent(ExerciseActivity.this, LoginActivity.class);
+        Intent intent = new Intent(ExercisesActivity.this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
@@ -235,7 +246,7 @@ public class ExerciseActivity extends AppCompatActivity {
                     exercise = exercisePosition + 1;
                     nov1.setText(Integer.toString(exercise)+ " de " + exercises.size() );
                     tv1 = (TextView) findViewById(R.id.infoquestionary);
-                   // iv1.setImageBitmap(exercises.get(exercisePosition).getImage());
+                    // iv1.setImageBitmap(exercises.get(exercisePosition).getImage());
                     tv1.setText(exercises.get(exercisePosition).getInformation().replace("\\n", System.getProperty("line.separator")));
 
                     int x = 0;
@@ -354,102 +365,102 @@ public class ExerciseActivity extends AppCompatActivity {
         String answerRecibed,qtAnswer;
         int i=0;
         int resID;
-            correct=true;
-            StringComparation lv = new StringComparation();
+        correct=true;
+        StringComparation lv = new StringComparation();
 
-            for(Question qt:exercises.get(exercisePosition).getQuestions()){
-                i++;
-                resID = getResources().getIdentifier("et"+i, "id", getPackageName());
-                EditText text=(EditText) findViewById(resID);
+        for(Question qt:exercises.get(exercisePosition).getQuestions()){
+            i++;
+            resID = getResources().getIdentifier("et"+i, "id", getPackageName());
+            EditText text=(EditText) findViewById(resID);
 
-                Drawable drawable = text.getBackground(); // get current EditText drawable
+            Drawable drawable = text.getBackground(); // get current EditText drawable
 
-                answerRecibed = text.getText().toString();
-                if(answerRecibed.length()>0){
-                    qtAnswer = qt.getAnswer().replace("[","").replace("]","").replace("{","").replace("}","");
-                    if(qtAnswer.equalsIgnoreCase(answerRecibed)){
-                        editTextSetColor(Color.GREEN,drawable,text);
-                    }else {
-                        int impAnswers=tokens(qt.getAnswer(),']');
-                        if(impAnswers>0){
-                            qtAnswer=qt.getAnswer().substring(qt.getAnswer().indexOf('[')+1, qt.getAnswer().indexOf(']'));
-                        }else{
-                            qtAnswer="";
-                        }
-                        if(answerRecibed.contains(qtAnswer) && !qtAnswer.equals("")){//this is the part exactly
-                            answerRecibed=answerRecibed.replace(qtAnswer,"");
-                            if(answerRecibed.charAt(0)==' ')
-                                answerRecibed=answerRecibed.substring(1);
-                            qtAnswer=qt.getAnswer().replace(qtAnswer,"").replace("[","").replace("]","");
-                            if(qtAnswer.charAt(0)==' ')
-                                qtAnswer=qtAnswer.substring(1);
-                            int noImpAnswers=tokens(qtAnswer,'}');
-                            if(noImpAnswers>0){//there are answers not importants
-                                String auxQtNiA, niaStr=qtAnswer.toLowerCase();
-                                answerRecibed=answerRecibed.toLowerCase();
-                                for(int nia=0; nia<noImpAnswers; nia++){
-                                    auxQtNiA=niaStr.substring(niaStr.indexOf('{')+1, niaStr.indexOf('}'));
-                                    StringTokenizer tokAnswerReceived= new StringTokenizer(answerRecibed);
-                                    int words =tokAnswerReceived.countTokens();
-                                    for(int pal=0; pal<words; pal++){ //search answers not importans and quit it
-                                        int theshold=0;
-                                        if(auxQtNiA.length()<=3){theshold=0;}
-                                        else if(auxQtNiA.length()<=6){theshold=1;}
-                                        else if(auxQtNiA.length()<=9){theshold=2;}
-                                        else if(auxQtNiA.length()<=15 && auxQtNiA.length()>15){theshold=3;}
-                                        String anstok = tokAnswerReceived.nextToken();
-                                        if(lv.calculate(auxQtNiA,anstok)<=theshold){
-                                            answerRecibed=answerRecibed.replace(auxQtNiA+" ","");
-                                            answerRecibed=answerRecibed.replace(" "+auxQtNiA,"");
-                                            answerRecibed=answerRecibed.replace(auxQtNiA,"");
-                                            niaStr=niaStr.replace("{"+auxQtNiA+"} ","");
-                                            niaStr=niaStr.replace(" {"+auxQtNiA+"}","");
-                                            niaStr=niaStr.replace("{"+auxQtNiA+"}","");
-                                        }
-                                    }
-                                }
-                                for(int nia=0; nia<noImpAnswers; nia++){
-                                    String aux = qtAnswer.substring(qtAnswer.indexOf('{'), qtAnswer.indexOf('}')+1);
-                                    qtAnswer=qtAnswer.replace(" "+aux,"");
-                                    qtAnswer=qtAnswer.replace(aux+" ","");
-                                    qtAnswer=qtAnswer.replace(aux,"");
-                                }
-                            }
-
-                            StringTokenizer tokqAnswer= new StringTokenizer(qtAnswer);
-                            StringTokenizer tokAnswerReceived= new StringTokenizer(qtAnswer);
-                            String auxa="", auxb="";
-                            if(tokqAnswer.countTokens()==tokqAnswer.countTokens()){
-                                editTextSetColor(Color.GREEN,drawable,text);
-                                while(tokqAnswer.countTokens()>0){
+            answerRecibed = text.getText().toString();
+            if(answerRecibed.length()>0){
+                qtAnswer = qt.getAnswer().replace("[","").replace("]","").replace("{","").replace("}","");
+                if(qtAnswer.equalsIgnoreCase(answerRecibed)){
+                    editTextSetColor(Color.GREEN,drawable,text);
+                }else {
+                    int impAnswers=tokens(qt.getAnswer(),']');
+                    if(impAnswers>0){
+                        qtAnswer=qt.getAnswer().substring(qt.getAnswer().indexOf('[')+1, qt.getAnswer().indexOf(']'));
+                    }else{
+                        qtAnswer="";
+                    }
+                    if(answerRecibed.contains(qtAnswer) && !qtAnswer.equals("")){//this is the part exactly
+                        answerRecibed=answerRecibed.replace(qtAnswer,"");
+                        if(answerRecibed.charAt(0)==' ')
+                            answerRecibed=answerRecibed.substring(1);
+                        qtAnswer=qt.getAnswer().replace(qtAnswer,"").replace("[","").replace("]","");
+                        if(qtAnswer.charAt(0)==' ')
+                            qtAnswer=qtAnswer.substring(1);
+                        int noImpAnswers=tokens(qtAnswer,'}');
+                        if(noImpAnswers>0){//there are answers not importants
+                            String auxQtNiA, niaStr=qtAnswer.toLowerCase();
+                            answerRecibed=answerRecibed.toLowerCase();
+                            for(int nia=0; nia<noImpAnswers; nia++){
+                                auxQtNiA=niaStr.substring(niaStr.indexOf('{')+1, niaStr.indexOf('}'));
+                                StringTokenizer tokAnswerReceived= new StringTokenizer(answerRecibed);
+                                int words =tokAnswerReceived.countTokens();
+                                for(int pal=0; pal<words; pal++){ //search answers not importans and quit it
                                     int theshold=0;
-                                    auxa = tokqAnswer.nextToken();
-                                    auxb = tokAnswerReceived.nextToken();
-                                    if(auxa.length()<=3){theshold=0;}
-                                    else if(auxa.length()<=6){theshold=1;}
-                                    else if(auxa.length()<=9){theshold=2;}
-                                    else if(auxa.length()<=15 && auxa.length()>15){theshold=3;}
-                                    if(lv.calculate(auxa,auxb)>theshold){
-                                        correct=false;
-                                        editTextSetColor(Color.RED,drawable,text);
+                                    if(auxQtNiA.length()<=3){theshold=0;}
+                                    else if(auxQtNiA.length()<=6){theshold=1;}
+                                    else if(auxQtNiA.length()<=9){theshold=2;}
+                                    else if(auxQtNiA.length()<=15 && auxQtNiA.length()>15){theshold=3;}
+                                    String anstok = tokAnswerReceived.nextToken();
+                                    if(lv.calculate(auxQtNiA,anstok)<=theshold){
+                                        answerRecibed=answerRecibed.replace(auxQtNiA+" ","");
+                                        answerRecibed=answerRecibed.replace(" "+auxQtNiA,"");
+                                        answerRecibed=answerRecibed.replace(auxQtNiA,"");
+                                        niaStr=niaStr.replace("{"+auxQtNiA+"} ","");
+                                        niaStr=niaStr.replace(" {"+auxQtNiA+"}","");
+                                        niaStr=niaStr.replace("{"+auxQtNiA+"}","");
                                     }
                                 }
-
-                            }else {
-                                correct=false;
-                                editTextSetColor(Color.RED,drawable,text);
                             }
-                        }else{
+                            for(int nia=0; nia<noImpAnswers; nia++){
+                                String aux = qtAnswer.substring(qtAnswer.indexOf('{'), qtAnswer.indexOf('}')+1);
+                                qtAnswer=qtAnswer.replace(" "+aux,"");
+                                qtAnswer=qtAnswer.replace(aux+" ","");
+                                qtAnswer=qtAnswer.replace(aux,"");
+                            }
+                        }
+
+                        StringTokenizer tokqAnswer= new StringTokenizer(qtAnswer);
+                        StringTokenizer tokAnswerReceived= new StringTokenizer(qtAnswer);
+                        String auxa="", auxb="";
+                        if(tokqAnswer.countTokens()==tokqAnswer.countTokens()){
+                            editTextSetColor(Color.GREEN,drawable,text);
+                            while(tokqAnswer.countTokens()>0){
+                                int theshold=0;
+                                auxa = tokqAnswer.nextToken();
+                                auxb = tokAnswerReceived.nextToken();
+                                if(auxa.length()<=3){theshold=0;}
+                                else if(auxa.length()<=6){theshold=1;}
+                                else if(auxa.length()<=9){theshold=2;}
+                                else if(auxa.length()<=15 && auxa.length()>15){theshold=3;}
+                                if(lv.calculate(auxa,auxb)>theshold){
+                                    correct=false;
+                                    editTextSetColor(Color.RED,drawable,text);
+                                }
+                            }
+
+                        }else {
                             correct=false;
                             editTextSetColor(Color.RED,drawable,text);
                         }
+                    }else{
+                        correct=false;
+                        editTextSetColor(Color.RED,drawable,text);
                     }
-                }else{
-                    editTextSetColor(Color.RED,drawable,text);
-                    correct=false;
                 }
-
+            }else{
+                editTextSetColor(Color.RED,drawable,text);
+                correct=false;
             }
+
+        }
         return correct;
     }
 
@@ -599,21 +610,29 @@ public class ExerciseActivity extends AppCompatActivity {
                 if (checked){
                     rbcheked = 1;
                 }
-                    //
-                    break;
+                //
+                break;
             case R.id.ranswer2:
                 if (checked){
                     rbcheked = 2;
                 }
-                    //
-                    break;
+                //
+                break;
             case R.id.ranswer3:
                 if (checked){
                     rbcheked = 3;
                 }
-                    //
-                    break;
+                //
+                break;
         }
+    }
+
+
+    //funtion
+    public static String cleanString(String texto) {
+        texto = Normalizer.normalize(texto, Normalizer.Form.NFD);
+        texto = texto.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        return texto;
     }
 
 

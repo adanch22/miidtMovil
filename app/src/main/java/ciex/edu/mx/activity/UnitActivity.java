@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 
 import ciex.edu.mx.R;
@@ -44,8 +45,10 @@ public class UnitActivity extends AppCompatActivity {
         MyApplication.getInstance().authenticate();
 
         title=getIntent().getStringExtra("title");
+        title = cleanString(title);
         level=getIntent().getStringExtra("level");
         book=getIntent().getStringExtra("book");
+        book = cleanString(book);
 
         setContentView(R.layout.activity_unit);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -149,6 +152,8 @@ public class UnitActivity extends AppCompatActivity {
         unitsXML obj;
        /* String url = EndPoints.UNITS_CONTENT_URL.replace("level?","level"+level)
                 .replace("book?","book"+book);*/
+
+
         String url = EndPoints.UNITS_CONTENT_URL.replace("level?","level"+level)
                 .replace("book?",title.replace(" ",""));
 
@@ -168,6 +173,14 @@ public class UnitActivity extends AppCompatActivity {
             recyclerView.getLayoutManager().scrollToPosition
                     (mAdapter.getItemCount() - 1);
         }
+    }
+
+
+    //funtion
+    public static String cleanString(String texto) {
+        texto = Normalizer.normalize(texto, Normalizer.Form.NFD);
+        texto = texto.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        return texto;
     }
 
 }
