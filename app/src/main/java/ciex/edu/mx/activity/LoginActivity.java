@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         /**
          * Check for login session. It user is already logged in
-         * redirect him to main activity
+         * redirect him to main activity4
          * */
         if (MyApplication.getInstance().getPrefManager().getUser() != null) {
             // start main activity

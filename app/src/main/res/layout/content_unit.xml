@@ -9,10 +9,27 @@
     tools:showIn="@layout/activity_unit"
     android:background="@color/iron">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/namestudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:text="nombre de estudiante"/>
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/unit_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:scrollbars="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true" />
 

@@ -9,10 +9,28 @@
     tools:showIn="@layout/activity_book"
     android:background="@color/iron">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/namestudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:text="nombre"/>
+    </LinearLayout>
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/book_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:scrollbars="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true" />
 
@@ -25,6 +43,7 @@
         android:weightSum="4"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbars="vertical">
+
     </LinearLayout>
 
 </RelativeLayout>

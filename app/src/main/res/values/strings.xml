@@ -4,17 +4,17 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="matricula">Matricula</string>
     <string name="password">Password</string>
-    <string name="err_msg_name">Enter full name</string>
-    <string name="err_msg_password">Enter a valid password</string>
+    <string name="err_msg_name">Introduce tu matricula 8 digitos</string>
+    <string name="err_msg_password">Introduce una contraseña valida</string>
     <string name="title_activity_chat_room_discussion">ChatRoomDiscussionActivity</string>
     <string name="action_logout">Cerrar sesión</string>
     <string name="title_activity_room">Select a course</string>
     <string name="title_activity_chat_room">CcourseActivity</string>
     <string name="title_activity_borrar">borrar</string>
-    <string name="title_activity_web">Ciex</string>
+    <string name="title_activity_web">Manual</string>
     <string name="title_activity_unit">Selecciona OA</string>
     <string name="label_enter_button">Enter</string>
-    <string name="label_msg_login">Authenticating…</string>
+    <string name="label_msg_login">Autenticando…</string>
     <string name="title_activity_lesson">Ejercicios</string>
     <string name="title_activity_book">Seleciona temática</string>
     <string name="logo">logo</string>
@@ -28,4 +28,5 @@
     <string name="menu_resource">Recursos multimedia</string>
     <string name="title_activity_exercises">Ejercicios del OA</string>
     <string name="title_activity_resources">Recursos multimedia del OA</string>
+    <string name="title_activity_quiz">QuizActivity</string>
 </resources>

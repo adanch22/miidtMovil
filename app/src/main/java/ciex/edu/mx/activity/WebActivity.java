@@ -17,6 +17,8 @@ import ciex.edu.mx.R;
 import ciex.edu.mx.app.MyApplication;
 import ciex.edu.mx.dialog.Dialogo;
 
+import static ciex.edu.mx.app.EndPoints.BASE_URL;
+
 public class WebActivity extends AppCompatActivity {
     WebView web_view;
     String url;
@@ -53,14 +55,17 @@ public class WebActivity extends AppCompatActivity {
         });
 
         web_view = (WebView) findViewById(R.id.webkit);
-        url="http://ciex.edu.mx";
+        url= BASE_URL + "learningObjects/manualapp.php";
         String url2="/";
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         //Javascript
         WebSettings webSettings = this.web_view.getSettings();
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setUseWideViewPort(true);
         webSettings.setJavaScriptEnabled(true);
-
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
+        webSettings.setBuiltInZoomControls(true);
         // Url
         this.web_view.loadUrl(this.url);
 
@@ -70,7 +75,7 @@ public class WebActivity extends AppCompatActivity {
 
     @Override
     protected void onPause(){
-        this.web_view.loadUrl("http://");
+        this.web_view.loadUrl(url);
         super.onPause();
     }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="ciex.edu.mx.activity.ResourcesActivity">
+    tools:context="ciex.edu.mx.activity.QuizActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbarquiz"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -21,14 +21,14 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_resources" />
+    <include layout="@layout/content_quiz" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabresources"
+        android:id="@+id/fabquiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_keyboard_arrow_right_white_24dp" />
+        app:srcCompat="@drawable/checked" />
 
 </android.support.design.widget.CoordinatorLayout>

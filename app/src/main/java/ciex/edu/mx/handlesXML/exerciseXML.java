@@ -90,7 +90,9 @@ public class exerciseXML {
                             if (type.equals("multipleoptions")){
                                 exercise.setQuestion(text);
 
-                            }else {
+                            }else if (type.equals("presentationm")){
+                                exercise.setQuestion(text);
+                            }else{
                                 question.setQuestion(text);
                                 questions.add(question);
                                 question = new Question();

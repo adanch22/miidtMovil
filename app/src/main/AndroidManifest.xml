@@ -40,6 +40,7 @@
         </activity>
         <activity
             android:name=".activity.BookActivity"
+            android:configChanges="screenSize|orientation"
             android:label="@string/title_activity_book"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -130,11 +131,19 @@
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".activity.ExercisesActivity"
+            android:configChanges="screenSize|orientation"
             android:label="@string/title_activity_exercises"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.ResourcesActivity"
+            android:configChanges="screenSize|orientation"
             android:label="@string/title_activity_resources"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.QuizActivity"
+            android:configChanges="screenSize|orientation"
+            android:label="@string/title_activity_quiz"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

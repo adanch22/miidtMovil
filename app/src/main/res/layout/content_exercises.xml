@@ -23,341 +23,523 @@
         <include android:id="@+id/multipleView" layout="@layout/multipleoptions"/>
 
         <include layout="@layout/results"/>-->
+                <!-- exercise type presentation-->
+                <RelativeLayout
+                    android:id="@+id/presentationView"
+                    android:layout_marginBottom="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/presentationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-        <TextView
-            android:id="@+id/nopresentation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No. ejercicio"
-            android:textColor="@color/colorPrimary"
-            android:textSize="28sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="35dp" />
-
-
-        <RelativeLayout
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:background="@color/iron"
-            android:layout_marginTop="70dp"
-            android:elevation="5dp"
-            android:id="@+id/contentq"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/imagePresentation"
-                android:layout_width="150dp"
-                android:layout_height="160dp"
-                android:layout_margin="10dp"
-                />
-            <TextView
-                android:layout_toRightOf="@id/imagePresentation"
-                android:layout_toEndOf="@+id/imagePresentation"
-                android:id="@+id/infoPresentation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
-                android:text="Information"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:layout_below="@id/imagePresentation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Information"
-                android:visibility="gone"
-                android:textSize="20sp"
-                android:id="@+id/tv1"/>
-            <EditText
-                android:layout_below="@id/tv1"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:id="@+id/et1"/>
-
-            <TextView
-                android:layout_below="@id/et1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:visibility="gone"
-                android:textSize="20sp"
-                android:id="@+id/tv2"/>
-            <EditText
-
-                android:layout_below="@id/tv2"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:id="@+id/et2"/>
-
-            <TextView
-                android:layout_below="@id/et2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Information"
-                android:visibility="gone"
-                android:textSize="20sp"
-                android:id="@+id/tv3"/>
-            <EditText
-                android:layout_below="@id/tv3"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:id="@+id/et3"/>
-
-
-        </RelativeLayout>
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-        android:id="@+id/questionary"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:background="@color/iron"
-            android:layout_marginTop="100dp"
-            android:elevation="5dp"
-            android:id="@+id/contentq"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <TextView
-                android:id="@+id/infoquestionary"
-                android:layout_below="@id/contentq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
-                android:text="Questionary"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:layout_below="@id/infoquestionary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
-                android:text="Information"
-                android:visibility="gone"
-                android:textSize="20sp"
-                android:id="@+id/qtv1"/>
-            <EditText
-                android:layout_below="@id/qtv1"
-                android:layout_marginRight="20dp"
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:id="@+id/qet1"
-                android:theme="@style/AppTheme"/>
-
-            <TextView
-                android:layout_below="@id/qet1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:visibility="gone"
-                android:textSize="20sp"
-                android:id="@+id/qtv2"/>
-            <EditText
-
-                android:layout_below="@id/qtv2"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:id="@+id/qet2"/>
-
-            <TextView
-                android:layout_below="@id/qet2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Information"
-                android:visibility="gone"
-                android:textSize="20sp"
-                android:id="@+id/qtv3"/>
-            <EditText
-                android:layout_below="@id/qtv3"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:id="@+id/qet3"/>
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/noQuestionary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No. ejercicio"
-            android:textColor="@color/colorPrimary"
-            android:textSize="28sp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp" />
-
-    </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/multipleView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="100dp"
-                android:background="@color/iron"
-                android:elevation="5dp"
-                android:id="@+id/content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/infomultipleoptions"
-                    android:layout_below="@id/content"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="Information"
-                    android:textSize="20sp"/>
-
-
-                <TextView
-                    android:layout_below="@id/infomultipleoptions"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:text="question"
-                    android:textSize="20sp"
-                    android:id="@+id/mtv1"/>
-
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_below="@id/mtv1">
-
-                    <RadioButton
-                        android:id="@+id/ranswer1"
-                        android:checked="true"
-                        android:text=""
-                        android:textSize="18sp"
-                        android:onClick="onRadioButtonClicked"
+                    <TextView
+                        android:id="@+id/nopresentation"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <RadioButton
-                        android:id="@+id/ranswer2"
-                        android:text=""
-                        android:textSize="18sp"
-                        android:onClick="onRadioButtonClicked"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <RadioButton
-                        android:id="@+id/ranswer3"
-                        android:text=""
-                        android:textSize="18sp"
-                        android:onClick="onRadioButtonClicked"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="No. ejercicio"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="28sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp" />
 
-                </RadioGroup>
+                    <ScrollView
+                        android:id="@+id/scrollpresentation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="100dp"
+                        android:scrollbars="vertical"
+                        android:windowSoftInputMode="adjustResize"
+                        android:isScrollContainer="false"
+                        android:scrollbarStyle="insideInset">
+
+                        <RelativeLayout
+                            android:id="@+id/contentp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                            android:elevation="5dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
+                            android:background="@color/iron3">
+
+                            <ImageView
+                                android:id="@+id/imagePresentation"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+
+                            <TextView
+                                android:layout_below="@id/imagePresentation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/black"
+                                android:text="Information"
+                                android:visibility="gone"
+                                android:textSize="22sp"
+                                android:id="@+id/tv1"/>
+                            <EditText
+                                android:layout_below="@id/tv1"
+                                android:layout_width="match_parent"
+                                android:visibility="gone"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="5dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/et1"/>
+
+
+                        </RelativeLayout>
+
+                    </ScrollView>
+
+
+                </RelativeLayout>
+                <!-- exercise type questionary-->
+                <RelativeLayout
+                    android:id="@+id/questionary"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/noquestionary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No. ejercicio"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="28sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp" />
+
+                <RelativeLayout
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="70dp"
+                    android:elevation="5dp"
+                    android:background="@color/iron3"
+                    android:id="@+id/contentq"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/infoquestionary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:text="Questionary"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/qtv1"
+                        android:layout_below="@id/infoquestionary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Information"
+                        android:textColor="@color/black"
+                        android:visibility="gone"
+                        android:textSize="22sp"
+                        />
+                    <EditText
+                        android:id="@+id/qet1"
+                        android:layout_below="@id/qtv1"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+
+                        android:theme="@style/AppTheme"/>
+
+
+                </RelativeLayout>
+
+
 
             </RelativeLayout>
 
+                <!-- exercise type multipleoptions-->
+                <RelativeLayout
+                    android:id="@+id/multipleView"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/nomultiple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No. ejercicio"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="28sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp" />
+
+                    <RelativeLayout
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:layout_marginTop="100dp"
+                        android:elevation="5dp"
+                        android:background="@color/iron3"
+                        android:id="@+id/content"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/infomultipleoptions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="Information"
+                            android:textSize="20sp"/>
+
+
+                        <TextView
+                            android:layout_below="@id/infomultipleoptions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="10dp"
+                            android:text="question"
+                            android:textSize="20sp"
+                            android:id="@+id/mtv1"/>
+
+                        <RadioGroup
+                            android:id="@+id/group"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/iron3"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_below="@id/mtv1">
+
+                            <RadioButton
+                                android:id="@+id/ranswer1"
+                                android:checked="true"
+                                android:text=""
+                                android:layout_marginTop="3dp"
+                                android:layout_marginBottom="3dp"
+                                android:textSize="18sp"
+                                android:background="@color/iron"
+                                android:onClick="onRBmultipleClicked"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <RadioButton
+                                android:id="@+id/ranswer2"
+                                android:text=""
+                                android:layout_marginBottom="3dp"
+                                android:textSize="18sp"
+                                android:background="@color/iron"
+                                android:onClick="onRBmultipleClicked"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <RadioButton
+                                android:id="@+id/ranswer3"
+                                android:text=""
+                                android:textSize="18sp"
+                                android:background="@color/iron"
+                                android:onClick="onRBmultipleClicked"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </RadioGroup>
+
+                        <TextView
+                            android:layout_below="@id/group"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:text=""/>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <!-- exercise type presentation multipleoptions-->
+
+                <RelativeLayout
+                    android:id="@+id/presentationmultipleView"
+                    android:layout_marginBottom="30dp"
+                    android:layout_centerVertical="true"
+                    android:elevation="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/nopresentationm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No. ejercicio"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="28sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp" />
+
+                    <ScrollView
+                        android:id="@+id/scrollpmultiple"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="100dp"
+                        android:elevation="5dp"
+                        android:scrollbarStyle="outsideInset"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true">
+
+                        <RelativeLayout
+                            android:id="@+id/contentml"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                            android:elevation="5dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
+                            android:background="@color/iron3">
+
+                            <ImageView
+                                android:id="@+id/imagePresentationmultiple"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:layout_below="@id/imagePresentationmultiple"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/black"
+                                android:layout_marginRight="10dp"
+                                android:text="question"
+                                android:textSize="22sp"
+                                android:id="@+id/pmtv1"/>
+
+                            <RadioGroup
+                                android:id="@+id/group2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/iron3"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_below="@id/pmtv1">
+
+                                <RadioButton
+                                    android:id="@+id/pranswer1"
+                                    android:checked="true"
+                                    android:text=""
+                                    android:background="@color/iron"
+                                    android:textSize="18sp"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginBottom="3dp"
+                                    android:onClick="onRBpresentationClicked"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+                                <RadioButton
+                                    android:id="@+id/pranswer2"
+                                    android:text=""
+                                    android:background="@color/iron"
+                                    android:textSize="18sp"
+                                    android:layout_marginBottom="3dp"
+                                    android:onClick="onRBpresentationClicked"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+                                <RadioButton
+                                    android:id="@+id/pranswer3"
+                                    android:text=""
+                                    android:background="@color/iron"
+                                    android:textSize="18sp"
+                                    android:onClick="onRBpresentationClicked"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="10dp"
+                                    android:text=""/>
+
+                            </RadioGroup>
+
+
+
+                        </RelativeLayout>
+
+                    </ScrollView>
+
+
+
+                </RelativeLayout>
+
+                <!-- exercise type videoquiz -->
+                <RelativeLayout
+            android:id="@+id/videoquizView"
+            android:layout_marginBottom="30dp"
+            android:layout_centerVertical="true"
+            android:elevation="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <TextView
-                android:id="@+id/nomultipleoptions"
+                android:id="@+id/nopresentationq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No. ejercicio"
                 android:textColor="@color/colorPrimary"
                 android:textSize="28sp"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp" />
 
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/results"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
+            <ScrollView
+                android:id="@+id/scrollquiz"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:id="@+id/layoutPresentation"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:elevation="5dp"
+                android:scrollbarStyle="outsideInset"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true">
 
-                <TextView
-                    android:id="@+id/infoResults"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/contentvq"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:text="Ejercicios terminados\nRESULTADOS:"
-                    android:textSize="20sp"
-                    android:gravity="center"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:elevation="5dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:background="@color/iron">
 
-            </RelativeLayout>
+                    <VideoView
+                        android:id="@+id/videoquiz"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:maxHeight="200dp"
+                        android:maxWidth="200dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_below="@id/videoquiz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:text="question"
+                        android:textSize="22sp"
+                        android:id="@+id/vqtv1"/>
+
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_below="@id/vqtv1">
+
+                        <RadioButton
+                            android:id="@+id/qranswer1"
+                            android:checked="true"
+                            android:text="prueba"
+                            android:textSize="18sp"
+                            android:onClick="onRBpresentationClicked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <RadioButton
+                            android:id="@+id/qranswer2"
+                            android:text="prueba"
+                            android:textSize="18sp"
+                            android:onClick="onRBpresentationClicked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <RadioButton
+                            android:id="@+id/qranswer3"
+                            android:text="prueba"
+                            android:textSize="18sp"
+                            android:onClick="onRBpresentationClicked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+
+                </RelativeLayout>
+
+            </ScrollView>
+
 
 
         </RelativeLayout>
 
 
-    </ViewFlipper>
+                <!-- results-->
+                <RelativeLayout
+                    android:id="@+id/results"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-</RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@color/iron3"
+                        android:elevation="10dp"
+                        android:id="@+id/layoutPresentation"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:id="@+id/infoResults"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40dp"
+                            android:text="Objeto de aprendizaje terminado\nRESULTADOS:"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true" />
+
+
+                        <ImageView
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:src="@drawable/ok"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true" />
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+            </ViewFlipper>
+
+
+        </RelativeLayout>

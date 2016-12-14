@@ -1,7 +1,9 @@
 package ciex.edu.mx.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -20,17 +23,19 @@ import ciex.edu.mx.R;
 import ciex.edu.mx.adapter.unitAdapter;
 import ciex.edu.mx.app.EndPoints;
 import ciex.edu.mx.app.MyApplication;
+import ciex.edu.mx.connection.ConnectivityReceiver;
 import ciex.edu.mx.dialog.ListDialog;
 import ciex.edu.mx.handlesXML.unitsXML;
 import ciex.edu.mx.model.Unit;
 
-public class UnitActivity extends AppCompatActivity {
+public class UnitActivity extends AppCompatActivity  implements ConnectivityReceiver.ConnectivityReceiverListener{
     private String TAG = UnitActivity.class.getSimpleName();
     private Menu menu;
     private RecyclerView recyclerView;
     private unitAdapter mAdapter;
     private ArrayList<Unit> unitsArrayList;
-    private String title, level, book;
+    private String title, level, book, type;
+    private TextView nameStudent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +84,7 @@ public class UnitActivity extends AppCompatActivity {
                         intent.putExtra("book",book);
                         intent.putExtra("unit",unitsArrayList.get(position).getTitle());
                         startActivity(intent);*/
-                        new ListDialog(title,level, book , unitsArrayList.get(position).getTitle()).show(getSupportFragmentManager(), "ListDialog");
+                        new ListDialog(title, unitsArrayList.get(position).getType(), level, book , unitsArrayList.get(position).getTitle()).show(getSupportFragmentManager(), "ListDialog");
                     }
 
                     @Override
@@ -89,6 +94,10 @@ public class UnitActivity extends AppCompatActivity {
                 }));
 
         fetchUnits();
+
+        String nombre =  MyApplication.getInstance().getPrefManager().getUser().getName();
+        nameStudent = (TextView)findViewById(R.id.namestudent);
+        nameStudent.setText("Bienvenid@ " + nombre);
     }
 
     @Override
@@ -107,7 +116,7 @@ public class UnitActivity extends AppCompatActivity {
                 MyApplication.getInstance().logout();//logout and show Login
                 break;
             case R.id.action_web:
-                startActivity(new Intent(UnitActivity.this, WebActivity.class));//Show web
+//                startActivity(new Intent(UnitActivity.this, WebActivity.class));//Show web
                 break;
             case R.id.action_message:
                 startActivity(new Intent(UnitActivity.this, CoursesActivity.class));//Show messages
@@ -181,6 +190,37 @@ public class UnitActivity extends AppCompatActivity {
         texto = Normalizer.normalize(texto, Normalizer.Form.NFD);
         texto = texto.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
         return texto;
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        showSnack(isConnected);
+
+    }
+    private void showSnack(boolean isConnected) {
+        String message;
+        int color;
+        if (!isConnected) {
+
+            message = "Sorry! Not connected to internet";
+            color = Color.RED;
+
+            Snackbar snackbar = Snackbar
+                    .make(findViewById(R.id.fab), message, Snackbar.LENGTH_LONG);
+
+            View sbView = snackbar.getView();
+            TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(color);
+            snackbar.show();
+        }else{
+            /**
+             * Always check for google play services availability before
+             * proceeding further with GCM
+             * */
+           /* if (checkPlayServices()) {
+                registerGCM();
+            }*/
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package ciex.edu.mx.dialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,7 +12,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import ciex.edu.mx.activity.ExercisesActivity;
+import ciex.edu.mx.activity.QuizActivity;
 import ciex.edu.mx.activity.ResourcesActivity;
+import ciex.edu.mx.model.Exercise;
 
 
 /**
@@ -23,14 +26,20 @@ public class ListDialog extends DialogFragment {
     private String level;
     private String book;
     private String unit;
+    private String type;
 
     private Intent intent;
-
-    public ListDialog(String title, String level, String book, String unit) {
+    @SuppressLint("ValidFragment")
+    public ListDialog(String title,String type, String level, String book, String unit) {
         this.title = title;
         this.level = level;
         this.book = book;
         this.unit = unit;
+        this.type = type;
+    }
+
+    public ListDialog(){
+
     }
 
     @NonNull
@@ -78,12 +87,24 @@ public class ListDialog extends DialogFragment {
                                 switch(item) {
                                     case 0:
                                         Toast.makeText(getActivity(), items[item] , Toast.LENGTH_SHORT).show();
-                                        intent = new Intent(getActivity(), ExercisesActivity.class);
-                                        intent.putExtra("title",title);
-                                        intent.putExtra("level",level);
-                                        intent.putExtra("book",book);
-                                        intent.putExtra("unit",unit);
-                                        startActivity(intent);
+                                       // intent = new Intent(getActivity(), ExercisesActivity.class);
+                                        if(type.equals("default")){
+                                            intent = new Intent(getActivity(), ExercisesActivity.class);
+                                            intent.putExtra("title",title);
+                                            intent.putExtra("level",level);
+                                            intent.putExtra("book",book);
+                                            intent.putExtra("unit",unit);
+                                            startActivity(intent);
+                                        }else if (type.equals("videoquiz")){
+                                            intent = new Intent(getActivity(), QuizActivity.class);
+                                            intent.putExtra("title",title);
+                                            intent.putExtra("level",level);
+                                            intent.putExtra("book",book);
+                                            intent.putExtra("unit",unit);
+                                            startActivity(intent);
+                                        }
+
+
                                         //
                                         break;
                                     case 1:

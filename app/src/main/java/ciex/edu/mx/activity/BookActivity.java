@@ -58,6 +58,8 @@ public class BookActivity extends AppCompatActivity implements ConnectivityRecei
     private ArrayList<Book> booksArrayList;
     private Menu menu;
 
+    private TextView nameStudent;
+
     public BroadcastReceiver mRegistrationBroadcastReceiver;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
@@ -148,6 +150,9 @@ public class BookActivity extends AppCompatActivity implements ConnectivityRecei
             fetchBooks(level);
         }
 
+       String nombre =  MyApplication.getInstance().getPrefManager().getUser().getName();
+        nameStudent = (TextView)findViewById(R.id.namestudent);
+        nameStudent.setText("Bienvenid@ " + nombre);
     }
     /**
      * Callback will be triggered when there is change in
@@ -210,7 +215,7 @@ public class BookActivity extends AppCompatActivity implements ConnectivityRecei
                 MyApplication.getInstance().logout();//logout and show Login
                 break;
             case R.id.action_web:
-                startActivity(new Intent(BookActivity.this, WebActivity.class));//Show web
+               // startActivity(new Intent(BookActivity.this, WebActivity.class));//Show web
                 break;
             case R.id.action_message:
                 startActivity(new Intent(BookActivity.this, CoursesActivity.class));//Show messages

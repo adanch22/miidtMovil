@@ -69,6 +69,9 @@ public class unitsXML {
                         }else if(name.equals("author")){
                             unit.setAuthor(text);
 
+                        } else if (name.equals("type")){
+                            unit.setType(text);
+
                         } else if(name.equals("unit")){
                             units.add(unit);
                         }

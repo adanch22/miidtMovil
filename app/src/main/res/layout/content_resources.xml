@@ -58,14 +58,14 @@
 
                 </WebView>
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/webview"
                     android:gravity="center"
                     android:textSize="20dp"
-                    android:text="Título"/>
+                    android:text="Título"/>-->
 
                 <!-- <ImageView
                      android:id="@+id/imageresource"
@@ -114,7 +114,7 @@
                     android:layout_centerHorizontal="true"
                     />
 
-                <TextView
+                    <TextView
                     android:id="@+id/vtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -151,6 +151,13 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
 
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/ok"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
+
             </RelativeLayout>
 
         </RelativeLayout>
@@ -168,6 +175,53 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true" />
         </RelativeLayout>
+
+<!--
+        <RelativeLayout
+            android:id="@+id/youtubeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/ynoresource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No. ejercicio"
+                android:textColor="@color/colorPrimary"
+                android:textSize="28sp"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/iron"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:elevation="5dp">
+
+                <com.google.android.youtube.player.YouTubePlayerView
+                    android:id="@+id/youtube_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp" />
+
+                <TextView
+                    android:id="@+id/ytitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/youtube_view"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:text="Título"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+-->
 
 
 

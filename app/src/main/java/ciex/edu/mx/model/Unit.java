@@ -6,16 +6,17 @@ package ciex.edu.mx.model;
 import java.io.Serializable;
 
 public class Unit implements Serializable {
-    String description, title, author, name;
+    String description, title, author, name, type;
 
     public Unit() {
     }
 
-    public Unit(String title, String description, String author, String name) {
+    public Unit(String title, String description, String author, String name, String type) {
         this.title = title;
         this.name = name;
         this.description = description;
         this.author = author;
+        this.type = type;
     }
 
     /*public String getGrammar() {
@@ -72,5 +73,13 @@ public class Unit implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
