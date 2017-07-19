@@ -57,9 +57,12 @@ public class ListDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         final CharSequence[] items = new CharSequence[2];
+        if (type.equals("default"))
+            items[0] = "Abrir ejercicios del OA";
+        else
+            items[0] = "Abrir videoquiz del OA";
 
-        items[0] = "Ir a ejercicios del OA";
-        items[1] = "Ir al contenido del OA";
+        items[1] = "Abrir contenido del OA";
 
        /* //setTitle("pulsa en la opción deseada").
         builder.setItems(items, new DialogInterface.OnClickListener() {

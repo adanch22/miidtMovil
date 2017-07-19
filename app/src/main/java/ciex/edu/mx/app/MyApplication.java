@@ -120,7 +120,7 @@ public class MyApplication extends Application {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Conection failed. Please try in a while", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error en conexion. Por favor intenta mas tarde", Toast.LENGTH_SHORT).show();
             }
         }) {
 

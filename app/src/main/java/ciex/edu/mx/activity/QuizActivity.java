@@ -39,6 +39,8 @@ import android.widget.ViewFlipper;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import ciex.edu.mx.R;
 import ciex.edu.mx.app.EndPoints;
@@ -65,9 +67,13 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
     private RadioButton rb1,rb2,rb3, rbm1, rbm2, rbm3;
     private int exercisePosition = 0, exercise, rbcheked=1;
     private ViewFlipper vf;
-    private Boolean finish;
+    private Boolean finish,play;
     private int error, ok;
 
+    private Snackbar snackbar;
+
+
+    private int iClicks,indicador;
     private ProgressDialog pDialog;
 
 
@@ -84,6 +90,47 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
         setContentView(R.layout.activity_quiz);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
+
+        iClicks = 0;
+        indicador = -1;
+        play=false;
+        Timer myTimer = new Timer();
+        myTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable(){
+                    @Override
+                    public void run(){
+                       TextView txtClicks = (TextView) findViewById(R.id.vqexercise);
+                        // task to be done every 1000 milliseconds
+                        if ((exercisePosition+1)<exercises.size()){
+                            indicador = Integer.parseInt(exercises.get(exercise+1).getInformation());
+                        }
+                        else
+                            indicador =500;
+
+                        if (play){
+                            iClicks = iClicks + 1;
+                        }
+
+
+                        if ((indicador+1) == iClicks){
+                            iv1.pause();
+                            exercisePosition++;
+                            showExercise();
+                            play=false;
+                            iClicks = iClicks -2;
+                        }
+
+//                       txtClicks.setText(String.valueOf(iClicks + " "+indicador));
+                    }
+                });
+
+            }
+        }, 0, 1000);
 
         /**
          * Check for login session. If not logged in launch
@@ -157,7 +204,7 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
                                     Snackbar.make(view, "Respuesta incorrecta, Intentalo de nuevo",
                                             Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 else
-                                    Snackbar.make(view, "La respuesta coorrecta es la opción: "+ exercises.get(exercisePosition).getAnswerok(),
+                                    Snackbar.make(view, "La respuesta correcta es la opción: "+ exercises.get(exercisePosition).getAnswerok(),
                                             Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 break;
 
@@ -167,9 +214,15 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
                         error=0;
                         switch (exerciseType){
                             case "presentation":
-                                iv1.pause();
+                                if ((exercisePosition+1)>=exercises.size()){
+                                    exercisePosition++;
+                                    iv1.stopPlayback();
+                                    showExercise();
+                                }
+                               /* iv1.pause();
+                                play=false;
                                 exercisePosition++;
-                                showExercise();
+                                showExercise();*/
 
                                 break;
 
@@ -179,6 +232,7 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
                                     exerciseType = "presentation";
                                     vf.setDisplayedChild(0);
                                     iv1.start();
+                                    play=true;
                                     ok =0;
 
                                 }else{
@@ -318,7 +372,7 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
             String url = EndPoints.UNITS_CONTENT_URL.replace("level?","level"+level).replace("book?",title.replace(" ", ""));
             Uri video = Uri.parse( url + exercises.get(exercise).getInformation());
 
-            iv1.setMediaController(mediacontroller);
+           // iv1.setMediaController(mediacontroller);
             iv1.setVideoURI(video);
 
         } catch (Exception e) {
@@ -332,8 +386,19 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
             public void onPrepared(MediaPlayer mp) {
                 pDialog.dismiss();
                 iv1.start();
+                play=true;
             }
         });
+
+        snackbar = Snackbar
+                .make(findViewById(R.id.fabquiz), "Video en reproducción, espera la pregunta", Snackbar.LENGTH_INDEFINITE)
+                .setAction("ok", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                    }
+                });
+
+        snackbar.show();
     }
 
 
@@ -347,12 +412,12 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
                     //vf.showNext();
                     vf.setDisplayedChild(1);
                     //iv1 = (ImageView) findViewById(R.id.imagePresentation);
-                    nov1 = (TextView) findViewById(R.id.nomultiple);
+                    nov1 = (TextView) findViewById(R.id.nomultiplequiz);
                     exercise = exercisePosition;
                     nov1.setText(Integer.toString(exercise)+ " de " + (exercises.size()-1) );
-                    tv1 = (TextView) findViewById(R.id.infomultipleoptions);
+                   // tv1 = (TextView) findViewById(R.id.infomultipleoptions);
                     // iv1.setImageBitmap(exercises.get(exercisePosition).getImage());
-                    tv1.setText(exercises.get(exercisePosition).getInformation().replace("\\n", System.getProperty("line.separator")));
+                   // tv1.setText(exercises.get(exercisePosition).getInformation().replace("\\n", System.getProperty("line.separator")));
                     tv2 = (TextView) findViewById(R.id.mtv1);
                     tv2.setText(exercises.get(exercisePosition).getQuestion());
 
@@ -370,6 +435,15 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
                     rb2.setTextColor(getResources().getColor(R.color.black));
                     rb3.setTextColor(getResources().getColor(R.color.black));
 
+                    snackbar = Snackbar
+                            .make(findViewById(R.id.fabquiz), "Elije una opción  y evalua tu respuesta con el botón azul", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            });
+
+                    snackbar.show();
                     break;
 
 

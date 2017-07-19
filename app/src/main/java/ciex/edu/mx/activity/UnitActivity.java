@@ -3,6 +3,7 @@ package ciex.edu.mx.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -36,6 +37,8 @@ public class UnitActivity extends AppCompatActivity  implements ConnectivityRece
     private ArrayList<Unit> unitsArrayList;
     private String title, level, book, type;
     private TextView nameStudent;
+
+    private CoordinatorLayout coordinatorLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +101,19 @@ public class UnitActivity extends AppCompatActivity  implements ConnectivityRece
         String nombre =  MyApplication.getInstance().getPrefManager().getUser().getName();
         nameStudent = (TextView)findViewById(R.id.namestudent);
         nameStudent.setText("Bienvenid@ " + nombre);
+
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id
+                .coordinatorLayout);
+
+        Snackbar snackbar = Snackbar
+                .make(coordinatorLayout, "Pulsa en las tarjetas para ir al contenido", Snackbar.LENGTH_INDEFINITE)
+                .setAction("ok", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                    }
+                });
+
+        snackbar.show();
     }
 
     @Override

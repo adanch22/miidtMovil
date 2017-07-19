@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
@@ -57,7 +58,8 @@ public class BookActivity extends AppCompatActivity implements ConnectivityRecei
     private BookAdapter mAdapter;
     private ArrayList<Book> booksArrayList;
     private Menu menu;
-
+    private CoordinatorLayout coordinatorLayout;
+    private View view ;
     private TextView nameStudent;
 
     public BroadcastReceiver mRegistrationBroadcastReceiver;
@@ -153,7 +155,19 @@ public class BookActivity extends AppCompatActivity implements ConnectivityRecei
        String nombre =  MyApplication.getInstance().getPrefManager().getUser().getName();
         nameStudent = (TextView)findViewById(R.id.namestudent);
         nameStudent.setText("Bienvenid@ " + nombre);
-    }
+
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id
+                .coordinatorLayout);
+        Snackbar snackbar = Snackbar
+                .make(coordinatorLayout, "Pulsa en las tarjetas para ir a los OA", Snackbar.LENGTH_INDEFINITE)
+                .setAction("ok", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                    }
+                });
+
+        snackbar.show();
+    }//end Oncreate
     /**
      * Callback will be triggered when there is change in
      * network connection

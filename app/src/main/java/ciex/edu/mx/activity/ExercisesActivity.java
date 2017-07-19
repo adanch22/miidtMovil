@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -56,7 +57,8 @@ public class ExercisesActivity extends AppCompatActivity  implements Connectivit
     private Boolean finish;
     private int error, ok;
 
-
+    private CoordinatorLayout coordinatorLayout;
+    private  Snackbar snackbar;
     //variables de la progressbar
     private int pbne=0,  progressStatus = 0;
     private Handler handler = new Handler();
@@ -194,6 +196,9 @@ public class ExercisesActivity extends AppCompatActivity  implements Connectivit
             }
 
         });
+
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id
+                .coordinatorLayout);
     }
 
     @Override
@@ -345,6 +350,18 @@ public class ExercisesActivity extends AppCompatActivity  implements Connectivit
                             myscrollp.fullScroll(ScrollView.FOCUS_DOWN);
                         }
                     });
+
+
+
+                    snackbar = Snackbar
+                            .make(findViewById(R.id.fabexercise), "Ingresa un valor y evalua tu respuesta con el botón azul", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            });
+
+                    snackbar.show();
                     break;
 
                 case "questionary":
@@ -375,6 +392,15 @@ public class ExercisesActivity extends AppCompatActivity  implements Connectivit
                         Drawable drawable = etAux.getBackground();
                         editTextSetColor(Color.BLACK, drawable, etAux);
                     }
+                    snackbar = Snackbar
+                            .make(findViewById(R.id.fabexercise), "Ingresa un valor y evalua tu respuesta con el botón azul", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            });
+
+                    snackbar.show();
 
                     break;
 
@@ -407,6 +433,15 @@ public class ExercisesActivity extends AppCompatActivity  implements Connectivit
                     rb2.setTextColor(getResources().getColor(R.color.black));
                     rb3.setTextColor(getResources().getColor(R.color.black));
 
+                    snackbar = Snackbar
+                            .make(findViewById(R.id.fabexercise), "Elije una opción  y evalua tu respuesta con el botón azul", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            });
+
+                    snackbar.show();
                     break;
 
 
@@ -445,42 +480,20 @@ public class ExercisesActivity extends AppCompatActivity  implements Connectivit
                             myscrollview.fullScroll(ScrollView.FOCUS_DOWN);
                         }
                     });
+
+                    snackbar = Snackbar
+                            .make(findViewById(R.id.fabexercise), "Elije una opción  y evalua tu respuesta con el botón azul", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("ok", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            });
+
+                    snackbar.show();
                     break;
 
 
-                case "videoquizz":
-                    exerciseType = "videoquizz";
-                    vf.setDisplayedChild(3);
-                    nov1 = (TextView) findViewById(R.id.nopresentationm);
-                    exercise = exercisePosition + 1;
-                    nov1.setText(Integer.toString(exercise)+ " de " + exercises.size() );
 
-                    iv1 = (ImageView) findViewById(R.id.imagePresentationmultiple);
-                    iv1.setImageBitmap(exercises.get(exercisePosition).getImage());
-
-
-                    tv2 = (TextView) findViewById(R.id.pmtv1);
-                    tv2.setText(exercises.get(exercisePosition).getQuestion());
-                    tv2.setFocusable(true);
-
-                    rbm1 =(RadioButton) findViewById(R.id.pranswer1);
-                    rbm1.setText(exercises.get(exercisePosition).getAnswer1());
-                    rbm1.setSelected(true);
-                    rbcheked= 1;
-
-                    rbm2 =(RadioButton) findViewById(R.id.pranswer2);
-                    rbm2.setText(exercises.get(exercisePosition).getAnswer2());
-
-                    rbm3 =(RadioButton) findViewById(R.id.pranswer3);
-                    rbm3.setText(exercises.get(exercisePosition).getAnswer3());
-                    final ScrollView myscrollviewq=((ScrollView) findViewById(R.id.scrollpmultiple));
-                    myscrollviewq.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            myscrollviewq.fullScroll(ScrollView.FOCUS_DOWN);
-                        }
-                    });
-                    break;
             }
         }else{
 

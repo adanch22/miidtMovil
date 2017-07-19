@@ -1,5 +1,6 @@
 package ciex.edu.mx.app;
 
+
 /**
  * Created by azulyoro on 11/04/16.
  * Here we declare the REST API endpoint urls.
@@ -8,7 +9,7 @@ package ciex.edu.mx.app;
 public class EndPoints {
     // localhost url -
     public static final String BASE_URL = "http://www.itnovacion.com/miidt/";
-    //public static final String BASE_URL = "http://192.168.1.68/ciex/";
+    //public static final String BASE_URL = "http://192.168.1.64/ciex/";
 
     public static final String LOGIN = BASE_URL + "v1/student/login/";
     public static final String AUTHENTICATE = BASE_URL + "v1/student/authenticate/";
