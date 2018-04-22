@@ -8,8 +8,8 @@ package ciex.edu.mx.app;
  */
 public class EndPoints {
     // localhost url -
-    public static final String BASE_URL = "http://www.itnovacion.com/miidt/";
-    //public static final String BASE_URL = "http://192.168.1.64/ciex/";
+    public static final String BASE_URL = "http://www.aaicaconsultoriambiental.com/miidt/";
+    //public static final String BASE_URL = "http://192.168.1.108/miidt/";
 
     public static final String LOGIN = BASE_URL + "v1/student/login/";
     public static final String AUTHENTICATE = BASE_URL + "v1/student/authenticate/";

@@ -38,7 +38,7 @@
                         android:layout_height="wrap_content"
                         android:text="No. ejercicio"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="28sp"
+                        android:textSize="24sp"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
@@ -72,7 +72,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_centerHorizontal="true"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
 
 
@@ -84,7 +84,7 @@
                                 android:textColor="@color/black"
                                 android:text="Information"
                                 android:visibility="gone"
-                                android:textSize="22sp"
+                                android:textSize="20sp"
                                 android:id="@+id/tv1"/>
                             <EditText
                                 android:layout_below="@id/tv1"
@@ -520,7 +520,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="40dp"
-                            android:text="Objeto de aprendizaje terminado\nRESULTADOS:"
+                            android:text="Objeto de aprendizaje terminado."
                             android:textSize="20sp"
                             android:gravity="center"
                             android:layout_alignParentTop="true"

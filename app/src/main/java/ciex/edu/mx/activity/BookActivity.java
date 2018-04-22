@@ -228,6 +228,7 @@ public class BookActivity extends AppCompatActivity implements ConnectivityRecei
             case R.id.action_logout:
                 MyApplication.getInstance().logout();//logout and show Login
                 break;
+
             case R.id.action_web:
                // startActivity(new Intent(BookActivity.this, WebActivity.class));//Show web
                 break;

@@ -68,7 +68,7 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
     private int exercisePosition = 0, exercise, rbcheked=1;
     private ViewFlipper vf;
     private Boolean finish,play;
-    private int error, ok;
+    private int error, ok, pbvalue;
 
     private Snackbar snackbar;
 
@@ -159,6 +159,11 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
         //mostrar el video para videoquiz
         showvideoquiz();
 
+        //Barra Progresiva
+        pbvalue= (100 / exercises.size()+1);
+        myProgressBar=(ProgressBar)findViewById(R.id.simpleProgressBar); // initiate the progress bar
+        myProgressBar.setMax(100); // 100 maximum value for the progress value
+        myProgressBar.setProgress(5); // 50 default progress value for the progress bar
        // showExercise();
 
 
@@ -236,9 +241,10 @@ public class QuizActivity extends AppCompatActivity implements ConnectivityRecei
                                     ok =0;
 
                                 }else{
-                                    Snackbar.make(view, "Respuesta correcta, pulsa el boton azul para continuar", Snackbar.LENGTH_LONG)
+                                    Snackbar.make(view, "Respuesta correcta, pulsa el botón azul para continuar", Snackbar.LENGTH_LONG)
                                             .setAction("Action", null).show();
                                     ok = ok +1;
+                                    myProgressBar.setProgress(pbvalue*exercisePosition);
                                 }
 
                                 break;

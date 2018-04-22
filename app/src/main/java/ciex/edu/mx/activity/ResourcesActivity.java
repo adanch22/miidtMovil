@@ -17,6 +17,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -70,6 +73,7 @@ public class ResourcesActivity extends AppCompatActivity   implements Connectivi
     private int exercisePosition = 0, exercise, rbcheked=1;
     private ViewFlipper vf;
     private Boolean finish;
+    private Menu menu;
 
     private ImageView imageview;
     private VideoView videoview;
@@ -79,6 +83,7 @@ public class ResourcesActivity extends AppCompatActivity   implements Connectivi
     private WebView web;
     private static final int RECOVERY_DIALOG_REQUEST = 1;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,6 +148,37 @@ public class ResourcesActivity extends AppCompatActivity   implements Connectivi
             }
         });
     }
+/*
+Codigo para actualizar el reproductor de video para expandir a pantalla completa
+*
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_video, menu);
+        this.menu = menu;
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.video_full:
+                createNote();
+                break;
+
+
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
+
+    private void createNote() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+*/
 
     @Override
     public void onBackPressed()
@@ -293,7 +329,7 @@ public class ResourcesActivity extends AppCompatActivity   implements Connectivi
 
                     pDialog.setTitle(exercises.get(exercisePosition).getTitle() + "Video Streaming");
                     // Set progressbar message
-                    pDialog.setMessage("Buffering...");
+                    pDialog.setMessage("Cargando...");
                     pDialog.setIndeterminate(false);
                     pDialog.setCancelable(false);
                     // Show progressbar

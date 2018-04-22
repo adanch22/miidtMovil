@@ -98,10 +98,11 @@ public class UnitActivity extends AppCompatActivity  implements ConnectivityRece
 
         fetchUnits();
 
+        //obtiene el nombre del usuario
         String nombre =  MyApplication.getInstance().getPrefManager().getUser().getName();
         nameStudent = (TextView)findViewById(R.id.namestudent);
         nameStudent.setText("Bienvenid@ " + nombre);
-
+        //..........
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id
                 .coordinatorLayout);
 
@@ -115,6 +116,16 @@ public class UnitActivity extends AppCompatActivity  implements ConnectivityRece
 
         snackbar.show();
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        // start main activity
+        startActivity(new Intent(getApplicationContext(), BookActivity.class));
+        finish();
+        // super.onBackPressed();  // Invoca al método
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

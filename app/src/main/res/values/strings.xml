@@ -8,15 +8,15 @@
     <string name="err_msg_password">Introduce una contraseña valida</string>
     <string name="title_activity_chat_room_discussion">ChatRoomDiscussionActivity</string>
     <string name="action_logout">Cerrar sesión</string>
-    <string name="title_activity_room">Select a course</string>
+    <string name="title_activity_room">Grupos de Mensajes</string>
     <string name="title_activity_chat_room">CcourseActivity</string>
     <string name="title_activity_borrar">borrar</string>
     <string name="title_activity_web">Manual</string>
-    <string name="title_activity_unit">Selecciona OA</string>
+    <string name="title_activity_unit">Objetos de Aprendizaje</string>
     <string name="label_enter_button">Enter</string>
     <string name="label_msg_login">Autenticando…</string>
     <string name="title_activity_lesson">Ejercicios</string>
-    <string name="title_activity_book">Seleciona temática</string>
+    <string name="title_activity_book">Temáticas</string>
     <string name="logo">logo</string>
     <string name="gcm_defaultSenderId">11198188691</string>
     <string name="title_activity_full_screen_view">FullScreenViewActivity</string>
@@ -24,9 +24,10 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="close">Close</string>
     <string name="title_activity_resource">Recursos Multimedia</string>
+    <string name="full_scream">Video pantalla completa</string>
     <string name="title_activity_video">VideoActivity</string>
     <string name="menu_resource">Recursos multimedia</string>
     <string name="title_activity_exercises">Ejercicios del OA</string>
     <string name="title_activity_resources">Recursos multimedia del OA</string>
-    <string name="title_activity_quiz">QuizActivity</string>
+    <string name="title_activity_quiz">VideoQuiz OA</string>
 </resources>

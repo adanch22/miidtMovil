@@ -20,6 +20,9 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -46,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputMatricula, inputPassword;
     private TextInputLayout inputLayoutMatricula, inputLayoutPassword;
     private Button btnEnter;
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +92,26 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_about, menu);
+        this.menu = menu;
+
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.action_about:
+                //MyApplication.getInstance().logout();//logout and show Login
+                break;
+
+
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
     /**
      * logging in user. Will make http post request with matricula, password
      * as parameters

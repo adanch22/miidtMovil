@@ -51,15 +51,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/iron"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:elevation="5dp">
 
                 <VideoView
                     android:id="@+id/vqvideoView"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="0dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"

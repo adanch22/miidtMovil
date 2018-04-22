@@ -57,12 +57,18 @@ public class ListDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         final CharSequence[] items = new CharSequence[2];
-        if (type.equals("default"))
-            items[0] = "Abrir ejercicios del OA";
-        else
-            items[0] = "Abrir videoquiz del OA";
+        if (type.equals("default")){
+            items[0] = "Abrir contenido del OA";
+            items[1] = "Abrir ejercicios del OA";
 
-        items[1] = "Abrir contenido del OA";
+        }
+
+        else{
+            items[0] = "";
+            items[1] = "Abrir videoquiz del OA";
+
+        }
+
 
        /* //setTitle("pulsa en la opción deseada").
         builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -88,7 +94,7 @@ public class ListDialog extends DialogFragment {
                                 Log.i("Dialogos", "Opción elegida: " + items[item]);
 
                                 switch(item) {
-                                    case 0:
+                                    case 1:
                                         Toast.makeText(getActivity(), items[item] , Toast.LENGTH_SHORT).show();
                                        // intent = new Intent(getActivity(), ExercisesActivity.class);
                                         if(type.equals("default")){
@@ -110,14 +116,17 @@ public class ListDialog extends DialogFragment {
 
                                         //
                                         break;
-                                    case 1:
-                                        Toast.makeText(getActivity(), items[item], Toast.LENGTH_SHORT).show();
-                                        intent = new Intent(getActivity(), ResourcesActivity.class);
-                                        intent.putExtra("title",title);
-                                        intent.putExtra("level",level);
-                                        intent.putExtra("book",book);
-                                        intent.putExtra("unit",unit);
-                                        startActivity(intent);
+                                    case 0:
+                                        if (type.equals("default")){
+                                            Toast.makeText(getActivity(), items[item], Toast.LENGTH_SHORT).show();
+                                            intent = new Intent(getActivity(), ResourcesActivity.class);
+                                            intent.putExtra("title",title);
+                                            intent.putExtra("level",level);
+                                            intent.putExtra("book",book);
+                                            intent.putExtra("unit",unit);
+                                            startActivity(intent);
+                                        }
+
                                         break;
 
                                 }//fin de switch

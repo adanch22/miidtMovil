@@ -354,7 +354,7 @@ public class ExercisesActivity extends AppCompatActivity  implements Connectivit
 
 
                     snackbar = Snackbar
-                            .make(findViewById(R.id.fabexercise), "Ingresa un valor y evalua tu respuesta con el botón azul", Snackbar.LENGTH_INDEFINITE)
+                            .make(findViewById(R.id.fabexercise), "Ingresa un valor y evalúa tu respuesta con el botón azul", Snackbar.LENGTH_INDEFINITE)
                             .setAction("ok", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -393,7 +393,7 @@ public class ExercisesActivity extends AppCompatActivity  implements Connectivit
                         editTextSetColor(Color.BLACK, drawable, etAux);
                     }
                     snackbar = Snackbar
-                            .make(findViewById(R.id.fabexercise), "Ingresa un valor y evalua tu respuesta con el botón azul", Snackbar.LENGTH_INDEFINITE)
+                            .make(findViewById(R.id.fabexercise), "Ingresa un valor y evalúa tu respuesta con el botón azul", Snackbar.LENGTH_INDEFINITE)
                             .setAction("ok", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -434,7 +434,7 @@ public class ExercisesActivity extends AppCompatActivity  implements Connectivit
                     rb3.setTextColor(getResources().getColor(R.color.black));
 
                     snackbar = Snackbar
-                            .make(findViewById(R.id.fabexercise), "Elije una opción  y evalua tu respuesta con el botón azul", Snackbar.LENGTH_INDEFINITE)
+                            .make(findViewById(R.id.fabexercise), "Elije una opción  y evalúa tu respuesta con el botón azul", Snackbar.LENGTH_INDEFINITE)
                             .setAction("ok", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
